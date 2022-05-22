@@ -1,0 +1,53 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Detector</title>
+    <link rel="stylesheet" href="{% static 'bootstrap\css\bootstrap.min.css' %}">
+    <style>
+        span {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="background-color: rgba(161, 70, 70, 0.507); color: black; padding: 10px;">Weather Detector App </h2>
+    <div class="container">
+        <form class="form" role="form" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10 form-group" >
+                <input class="form-control" type="text" name = city id="cityname" placeholder="Enter city name">
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+        </form>
+        <div class="row"><hr></div>
+        {% if city %}
+        <div class="row">
+            <h3 style="margin: none; padding: none;">{{city}}</h3>
+        </div>
+        <div class="row">
+            <h6> Country code :<span> {{country_code}}</span></h6>
+        </div>
+        <div class="row">
+            <h6> Coordinate :<span> {{coordinates}}</span></h6>
+        </div>
+        <div class="row">
+            <h6> Temperature :<span> {{temp}}&#8451</span></h6>
+        </div>
+        <div class="row">
+            <h6> Pressure :<span> {{pressure}}</span></h6>
+        </div>
+        <div class="row">
+            <h6> Humidity :<span> {{humidity}}</span></h6>
+        </div>
+        {% endif %}
+    </div>
+    <script src="{% static 'bootstrap\js\bootstrap.min.js' %}"></script>
+</body>
+</html>
