@@ -6,9 +6,10 @@ def index(request):
     if request.method == 'POST':
         city = request.POST['city']
         city = city.strip()
+        city_name = city.replace(" ", "+")
         if request.POST['city'] == '':
             return redirect('/')
-        resp = urllib.request.urlopen(f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=f38e390615decb03b3c16488bb2fb578&units=metric').read()
+        resp = urllib.request.urlopen(f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid=f38e390615decb03b3c16488bb2fb578&units=metric').read()
         jdata = json.loads(resp)
         data = {
         "city" : city.upper(),
